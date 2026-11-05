@@ -16,6 +16,7 @@
  * this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
+#include "AltRepeatDygma.h"
 #include "AutoshiftDygma.h"
 #include "Battery.h"
 #include "Ble_manager.h"
@@ -56,6 +57,7 @@ typedef struct PACK __attribute__((aligned(4)))
     kaleidoscope::plugin::AutoshiftDygma::autoshift_config_t autoshift;
     kaleidoscope::plugin::CapsWordTriggerDygma::capsword_config_t capsword;
     kaleidoscope::plugin::CombosDygma::combos_config_t combos;
+    kaleidoscope::plugin::AltRepeatDygma::altrepeat_config_t altrepeat;
 
 } config_cache_t;
 
@@ -172,6 +174,12 @@ static result_t _cfg_item_request_kbdmem_cb( kbdmem_item_type_t item_type, const
         case KBDMEM_ITEM_TYPE_COMBOS:
 
             *pp_item = &config_cache.combos;
+
+            break;
+
+        case KBDMEM_ITEM_TYPE_ALTREPEAT:
+
+            *pp_item = &config_cache.altrepeat;
 
             break;
 

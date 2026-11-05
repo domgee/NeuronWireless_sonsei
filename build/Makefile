@@ -425,6 +425,7 @@ SRCSC += $(KEYBOARD_API_ROOT_DIR)/keyboard_api.c
 # Kaleidoscope FAL (Framework Abstraction Layer)
 SRCSCXX += $(KALEIDOSCOPE_ADAPTER_ROOT_DIR)/fal/ll/kbdfal_ll_base.cpp
 SRCSCXX += $(KALEIDOSCOPE_ADAPTER_ROOT_DIR)/fal/ll/kbdfal_ll_memory.cpp
+SRCSCXX += $(KALEIDOSCOPE_ADAPTER_ROOT_DIR)/plugins/AltRepeatDygma.cpp
 SRCSCXX += $(KALEIDOSCOPE_ADAPTER_ROOT_DIR)/plugins/AutoshiftDygma.cpp
 SRCSCXX += $(KALEIDOSCOPE_ADAPTER_ROOT_DIR)/plugins/BaseDygma.cpp
 SRCSCXX += $(KALEIDOSCOPE_ADAPTER_ROOT_DIR)/plugins/CapsWordDygma.cpp
