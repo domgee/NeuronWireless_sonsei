@@ -27,6 +27,7 @@
 #include "DynamicMacrosDygma.h"
 #include "EEPROMKeymapDygma.h"
 #include "FirmwareVersion.h"
+#include "KeyOverridesDygma.h"
 #include "KeyRoleManager.h"
 #include "LEDLayers.h"
 #include "LEDManager.h"
@@ -58,6 +59,7 @@ typedef struct PACK __attribute__((aligned(4)))
     kaleidoscope::plugin::CapsWordTriggerDygma::capsword_config_t capsword;
     kaleidoscope::plugin::CombosDygma::combos_config_t combos;
     kaleidoscope::plugin::AltRepeatDygma::altrepeat_config_t altrepeat;
+    kaleidoscope::plugin::KeyOverridesDygma::keyoverrides_config_t keyoverrides;
 
 } config_cache_t;
 
@@ -180,6 +182,12 @@ static result_t _cfg_item_request_kbdmem_cb( kbdmem_item_type_t item_type, const
         case KBDMEM_ITEM_TYPE_ALTREPEAT:
 
             *pp_item = &config_cache.altrepeat;
+
+            break;
+
+        case KBDMEM_ITEM_TYPE_KEYOVERRIDES:
+
+            *pp_item = &config_cache.keyoverrides;
 
             break;
 
