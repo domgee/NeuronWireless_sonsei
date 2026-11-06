@@ -22,6 +22,7 @@
 #include "Ble_manager.h"
 #include "CapsWordDygma.h"
 #include "CombosDygma.h"
+#include "ConditionalLayersDygma.h"
 #include "configuration.h"
 #include "Config_manager.h"
 #include "DynamicMacrosDygma.h"
@@ -61,6 +62,7 @@ typedef struct PACK __attribute__((aligned(4)))
     kaleidoscope::plugin::AltRepeatDygma::altrepeat_config_t altrepeat;
     kaleidoscope::plugin::KeyOverridesDygma::keyoverrides_config_t keyoverrides;
     kaleidoscope::plugin::Qukeys::QuickTap_config_t quicktap;
+    kaleidoscope::plugin::ConditionalLayersDygma::condlayers_config_t condlayers;
 
 } config_cache_t;
 
@@ -195,6 +197,12 @@ static result_t _cfg_item_request_kbdmem_cb( kbdmem_item_type_t item_type, const
         case KBDMEM_ITEM_TYPE_QUICKTAP:
 
             *pp_item = &config_cache.quicktap;
+
+            break;
+
+        case KBDMEM_ITEM_TYPE_CONDLAYERS:
+
+            *pp_item = &config_cache.condlayers;
 
             break;
 
