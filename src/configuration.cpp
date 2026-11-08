@@ -33,6 +33,7 @@
 #include "LEDLayers.h"
 #include "LEDManager.h"
 #include "LEDPaletteRGB.h"
+#include "LayerHoldModsDygma.h"
 #include "MouseKeysDygma.h"
 #include "QukeysDygma.h"
 #include "SuperkeysHandler.h"
@@ -64,6 +65,7 @@ typedef struct PACK __attribute__((aligned(4)))
     kaleidoscope::plugin::Qukeys::QuickTap_config_t quicktap;
     kaleidoscope::plugin::ConditionalLayersDygma::condlayers_config_t condlayers;
     kaleidoscope::plugin::Qukeys::DualFunction_config_t dualfunction;
+    kaleidoscope::plugin::LayerHoldModsDygma::holdmods_config_t holdmods;
 
 } config_cache_t;
 
@@ -210,6 +212,12 @@ static result_t _cfg_item_request_kbdmem_cb( kbdmem_item_type_t item_type, const
         case KBDMEM_ITEM_TYPE_DUALFUNC:
 
             *pp_item = &config_cache.dualfunction;
+
+            break;
+
+        case KBDMEM_ITEM_TYPE_HOLDMODS:
+
+            *pp_item = &config_cache.holdmods;
 
             break;
 
