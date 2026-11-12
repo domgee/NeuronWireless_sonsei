@@ -30,6 +30,7 @@
 #include "FirmwareVersion.h"
 #include "KeyOverridesDygma.h"
 #include "KeyRoleManager.h"
+#include "LEDCustomDygma.h"
 #include "LEDLayers.h"
 #include "LEDManager.h"
 #include "LEDPaletteRGB.h"
@@ -67,6 +68,7 @@ typedef struct PACK __attribute__((aligned(4)))
     kaleidoscope::plugin::Qukeys::DualFunction_config_t dualfunction;
     kaleidoscope::plugin::LayerHoldModsDygma::holdmods_config_t holdmods;
     kaleidoscope::plugin::KeyRoleManager::keymap_format_config_t keymap_format;
+    kaleidoscope::plugin::LEDCustomDygma::ledcustom_config_t ledcustom;
 
 } config_cache_t;
 
@@ -225,6 +227,12 @@ static result_t _cfg_item_request_kbdmem_cb( kbdmem_item_type_t item_type, const
         case KBDMEM_ITEM_TYPE_KEYMAP_FORMAT:
 
             *pp_item = &config_cache.keymap_format;
+
+            break;
+
+        case KBDMEM_ITEM_TYPE_LEDCUSTOM:
+
+            *pp_item = &config_cache.ledcustom;
 
             break;
 

@@ -91,6 +91,8 @@ extern "C"
 #include "configuration.h"
 #include "DynamicMacrosDygma.h"
 #include "OverlayProcessing.h"
+#include "LEDControlDygma.h"
+#include "LEDCustomDygma.h"
 #include "LEDDevice-Remote.h"
 #include "LEDManager.h"
 #include "LEDPaletteRGB.h"
@@ -310,6 +312,16 @@ static result_t LEDManager_init(void)
     return result;
 }
 
+static void _led_custom_toggle( uint8_t slot, const led_custom_t & settings )
+{
+    LEDManager.led_effect_custom_toggle( slot, settings );
+}
+
+static void _led_custom_table_changed( void )
+{
+    LEDManager.led_effect_custom_table_changed();
+}
+
 static result_t _kbdapi_init( void )
 {
     result_t result = RESULT_ERR;
@@ -391,6 +403,10 @@ void setup(void)
     // LED Manager
     result = LEDManager_init();
     ASSERT_DYGMA( result == RESULT_OK, "LEDManager_init failed!" );
+
+    /* Custom LED effect slots. Register after the LED Manager, so a slot key never reaches it before its init */
+    LEDControl.setCustomHandler( _led_custom_toggle );
+    LEDCustom.setTableChangedHandler( _led_custom_table_changed );
 
     //SuperkeysHandler.setup(); // Initialize the SuperkeysHandler plugin.
     keyRoleManager.setup_superkeys();   // Initialize the keyRoleManager plugin.
