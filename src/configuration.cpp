@@ -25,6 +25,7 @@
 #include "ConditionalLayersDygma.h"
 #include "configuration.h"
 #include "Config_manager.h"
+#include "DominantLayerDygma.h"
 #include "DynamicMacrosDygma.h"
 #include "EEPROMKeymapDygma.h"
 #include "FirmwareVersion.h"
@@ -69,6 +70,7 @@ typedef struct PACK __attribute__((aligned(4)))
     kaleidoscope::plugin::LayerHoldModsDygma::holdmods_config_t holdmods;
     kaleidoscope::plugin::KeyRoleManager::keymap_format_config_t keymap_format;
     kaleidoscope::plugin::LEDCustomDygma::ledcustom_config_t ledcustom;
+    kaleidoscope::plugin::DominantLayerDygma::dominant_config_t dominant;
 
 } config_cache_t;
 
@@ -233,6 +235,12 @@ static result_t _cfg_item_request_kbdmem_cb( kbdmem_item_type_t item_type, const
         case KBDMEM_ITEM_TYPE_LEDCUSTOM:
 
             *pp_item = &config_cache.ledcustom;
+
+            break;
+
+        case KBDMEM_ITEM_TYPE_DOMINANT:
+
+            *pp_item = &config_cache.dominant;
 
             break;
 
